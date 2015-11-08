@@ -24,6 +24,20 @@ h6 {
   padding: 0 5%;
 }
 
+/*Catch all to prevent overflow*/
+img,
+embed,
+object,
+video {
+  max-width: 100%;
+}
+
+/*Make sure touch targets are easy to hit.*/
+nav, a, button {
+  min-width: 48px;
+  min-height: 48px;
+}
+
 h1 {
   font-size: 40px;
   color: #f5a623;
@@ -34,7 +48,7 @@ h1 {
 h2 {
   font-weight: bold;
   font-size: 24px;
-  color: #999;
+  color: #908A8A;
   line-height: 29px;
   padding: 10px;
 }
@@ -108,6 +122,11 @@ a {
   background-color: #f5ae23;
 }
 
+.gray-connect {
+  background-color: #586775;
+  color: #e2dcdc;
+}
+
 .orange-text {
   color: #f5ae23;
 }
@@ -127,7 +146,6 @@ a {
   background-color: #4a4a4a;
 }
 
-/* TODO: Replace with image later */
 #header {
   background-color: #586775;
 }
@@ -146,7 +164,11 @@ a {
 }
 
 .center-content {
-  padding: 2.5% 5%;
+  padding: 2.5% 15%;
+}
+
+.center-content-section {
+  padding: 2.5% 10%;
 }
 
 ul {
