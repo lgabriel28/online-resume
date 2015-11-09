@@ -48,7 +48,7 @@ var projects = {
 			"title": "Portfolio Mockup to HTML",
 			"description": "Developed a personal portfolio page using HTML, CSS, and the Bootstrap framework. The page is fully responsive and works on mobile, tablet, and desktop browsers.",
 			"images": ["images/project.png"],
-			"date": "2015"
+			"dates": "2015"
 		}
 	]};
 
