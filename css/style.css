@@ -32,12 +32,12 @@ video {
   max-width: 100%;
 }
 
-
-/*Make sure touch targets are easy to hit.*/
+/*Make sure touch targets are easy to hit.
 nav, a, button {
   min-width: 48px;
   min-height: 48px;
 }
+*/
 
 h1 {
   font-size: 40px;

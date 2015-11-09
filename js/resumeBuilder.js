@@ -22,33 +22,34 @@ var work = {
 			"employer": "OpenTable",
 			"dates": "2013 - 2015",
 			"location": "San Francisco, CA, US",
-			"description": "Write solutions for online restaurant applications to consume internal API’s for user validation, password reset, and photo resources. (C# / ASP.NET) "
+			"description": "Write solutions for online restaurant applications to consume internal API’s for user "+
+							"validation, password reset, and photo resources. (C# / ASP.NET)"
 			},
 			{
-				"title": "Lead Technology Adminitrator",
-				"employer": "Premier Inc.",
-				"dates": "2010 - 2013",
-				"location": "Fort Lauderdale, FL, US",
-				"description": "Designed and developed new specialty disease treatment web applications, generating a revenue growth " +
+			"title": "Lead Technology Adminitrator",
+			"employer": "Premier Inc.",
+			"dates": "2010 - 2013",
+			"location": "Fort Lauderdale, FL, US",
+			"description": "Designed and developed new specialty disease treatment web applications, generating a revenue growth " +
 							   "of approximately $10,000 per month. Developed web applications and Oracle 11g database table design to " +
 							   "expedite productivity and reduce 30% of business processing time spent in the Sales and Marketing departments."
 			},
 			{
-				"title": "Software Engineer",
-				"employer": "NASA Langley Research Center",
-				"dates": "2008-2009",
-				"location": "Hampton, VA, US",
-				"description": "Developed educational video game using bio-cybernetic technology for ADHD patients. Researched the use of brainwave " +
+			"title": "Software Engineer",
+			"employer": "NASA Langley Research Center",
+			"dates": "2008-2009",
+			"location": "Hampton, VA, US",
+			"description": "Developed educational video game using bio-cybernetic technology for ADHD patients. Researched the use of brainwave " +
 							   "biofeedback in game-based learning environments to improve teaching and learning techniques."
 			}]
 };
 
 var projects = {
 	"projects":[{
-			"title": "Portfolio Mockup to HTML",
-			"description": "Developed a personal portfolio page using HTML, CSS, and the Bootstrap framework. The page is fully responsive and works on mobile, tablet, and desktop browsers.",
-			"images": ["images/project.png"],
-			"dates": "2015"
+		"title": "Portfolio Mockup to HTML",
+		"description": "Developed a personal portfolio page using HTML, CSS, and the Bootstrap framework. The page is fully responsive and works on mobile, tablet, and desktop browsers.",
+		"images": ["images/project.png"],
+		"dates": "2015"
 		}
 	]};
 
@@ -57,33 +58,31 @@ var education = {
 		"name": "Interamerican University",
 		"location": "San Juan, PR, US",
 		"degree": "BA",
-		"major": "Computer Science",
-		"dates": "2004-2009 -- BS"
+		"majors": ["Computer Science"],
+		"dates": 2009,
+		"url": "www.inter.edu"
 	    },
 	    {
-	    	"name": "Nova Southeastern University",
-	    	"location": "Fort Lauderdale, FL, US",
-	    	"degree": "MS",
-	    	"major": "Management Information Systems",
-	    	"dates": "2012-2015 -- MS"
+	    "name": "Nova Southeastern University",
+	    "location": "Fort Lauderdale, FL, US",
+	    "degree": "MS",
+	    "majors": ["Management Information Systems"],
+	    "dates": 2015,
+	    "url":"www.nsu.edu"
 		}],
 	"onlineCourses":[{
-		"title": "title",
-		"school": "school",
-		"date": "dates",
-		"url": "ur1"
+		"title": "Front-end Developer Nanodegree",
+		"school": "Udacity",
+		"date": "2015",
+		"url": "www.udacity.com"
 	}]
 };
 
-
-
 /**
-* @description Display header, skills, and contacts on either top or footer sections depending on the arguments beign passed. 
-* @param {object} contacts - An object containing contact information.
-* @param {string} section - The section where to display contact information.
-* @param {object} skills - An object containing professional skills.
+* @description Display header, skills, and contacts on either top or 
+			   footer sections depending on the arguments beign passed. 
 */
-bio.display = function(skills, contacts){
+bio.display = function(){
 
 	var formattedName = HTMLheaderName.replace("%data%", bio.name) ;
 	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
@@ -94,10 +93,10 @@ bio.display = function(skills, contacts){
 	$("#header").append(formattedBioPic);
 	$("#header").append(formattedWelcome);
 
-	if(skills.length > 0){
+	if(bio.skills.length > 0){
 	$("#header").append(HTMLskillsStart);
 		for(var i = 0; i < bio.skills.length; i++){
-			var fortmattedSkills = HTMLskills.replace("%data%", skills[i]);
+			var fortmattedSkills = HTMLskills.replace("%data%", bio.skills[i]);
 			$("#skills").append(fortmattedSkills);
 		}
 	}
@@ -106,15 +105,15 @@ bio.display = function(skills, contacts){
 	var sectionId = ["#topContacts", "#footerContacts"];
 	var sections = ["top", "footer"];
 
-	var formattedMobile = HTMLmobile.replace("%data%", contacts.mobile);
-	var formattedEmail =  HTMLemail.replace("%data%", contacts.email);
-	var formattedGitHub = HTMLgithub.replace("%data%", contacts.github);
-	var formattedLocation = HTMLlocation.replace("%data%", contacts.location);
+	var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+	var formattedEmail =  HTMLemail.replace("%data%", bio.contacts.email);
+	var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github);
+	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
 	sectionId.forEach(function(val){
 		$(val).append(formattedMobile);
 		$(val).append(formattedEmail);
-		$(val).append(formattedGitHub.replace("%url%", contacts.github));
+		$(val).append(formattedGitHub.replace("%url%", bio.contacts.github));
 		$(val).append(formattedLocation);
 	});
 
@@ -145,7 +144,7 @@ work.display = function(){
 */
 projects.display = function(){
 
-	for(key in projects.projects){
+	for(var key = 0; key < projects.projects.length; key++){
 		$("#projects").append(HTMLprojectStart);
 
 		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[key].title);
@@ -170,12 +169,12 @@ projects.display = function(){
 education.display = function(){
 	if(education.schools.length > 0){
 
-		for(key in education.schools){
+		for(var key = 0; key < education.schools.length; key++){
 			$("#education").append(HTMLschoolStart);
 			var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[key].name);
 			var formattedDates = HTMLschoolDates.replace("%data%", education.schools[key].dates);
 			var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[key].location);
-			var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[key].major);
+			var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[key].majors[0]);
 
 			$(".education-entry:last").append(formattedSchoolName);
 			$(".education-entry:last").append(formattedDates);
@@ -204,7 +203,7 @@ function inName(fullName){
 // Invoke display functions.
 work.display();
 projects.display();
-bio.display(bio.skills,bio.contacts);
+bio.display();
 education.display();
 
 // show map
