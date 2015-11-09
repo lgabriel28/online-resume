@@ -241,6 +241,13 @@ span {
   }
 }
 
+@media only screen and (max-width: 430px) {
+  #mapDiv {
+    padding-bottom: 15%;
+  }
+}
+
+
 @media only screen and (max-width: 585px) {
   .header-role {
     display: block;

@@ -7,7 +7,8 @@ var bio = {
 		mobile: "415-401-5894",
 		email: "luis.santiagoayala@gmail.com",
 		github: "https://github.com/lgabriel28",
-		location: "San Francisco"
+		location: "San Francisco",
+		twitter:"@signumsantiago"
 	},
 	picture:"images/profilePic.jpg",
 	welcome: "Welcome to my online resume! I am passionate about the fusion of creativity and science through the "+
@@ -15,53 +16,49 @@ var bio = {
 	skills: ["Web application development","C#", "PHP", "Java", "HTML", "JavaScript", "CSS"]
 };
 
-
 var work = {
-	"jobs":[
-		{
+	"jobs":[{
 			"title": "Software Engineer",
 			"employer": "OpenTable",
 			"dates": "2013 - 2015",
 			"location": "San Francisco, CA, US",
 			"description": "Write solutions for online restaurant applications to consume internal API’s for user validation, password reset, and photo resources. (C# / ASP.NET) "
-		},
-		{
-			"title": "Lead Technology Adminitrator",
-			"employer": "Premier Inc.",
-			"dates": "2010 - 2013",
-			"location": "Fort Lauderdale, FL, US",
-			"description": "Designed and developed new specialty disease treatment web applications, generating a revenue growth " +
-						   "of approximately $10,000 per month. Developed web applications and Oracle 11g database table design to " +
-						   "expedite productivity and reduce 30% of business processing time spent in the Sales and Marketing departments."
-		},
-		{
-			"title": "Software Engineer",
-			"employer": "NASA Langley Research Center",
-			"dates": "2008-2009",
-			"location": "Hampton, VA, US",
-			"description": "Developed educational video game using bio-cybernetic technology for ADHD patients. Researched the use of brainwave " +
-						   "biofeedback in game-based learning environments to improve teaching and learning techniques."
-		}
-	]
+			},
+			{
+				"title": "Lead Technology Adminitrator",
+				"employer": "Premier Inc.",
+				"dates": "2010 - 2013",
+				"location": "Fort Lauderdale, FL, US",
+				"description": "Designed and developed new specialty disease treatment web applications, generating a revenue growth " +
+							   "of approximately $10,000 per month. Developed web applications and Oracle 11g database table design to " +
+							   "expedite productivity and reduce 30% of business processing time spent in the Sales and Marketing departments."
+			},
+			{
+				"title": "Software Engineer",
+				"employer": "NASA Langley Research Center",
+				"dates": "2008-2009",
+				"location": "Hampton, VA, US",
+				"description": "Developed educational video game using bio-cybernetic technology for ADHD patients. Researched the use of brainwave " +
+							   "biofeedback in game-based learning environments to improve teaching and learning techniques."
+			}]
 };
 
 var projects = {
-	"projects":[
-		{
+	"projects":[{
 			"title": "Portfolio Mockup to HTML",
 			"description": "Developed a personal portfolio page using HTML, CSS, and the Bootstrap framework. The page is fully responsive and works on mobile, tablet, and desktop browsers.",
-			"images": ["images/project1.png"]
+			"images": ["images/project.png"],
+			"date": "2015"
 		}
 	]};
 
 var education = {
-	"schools":[
-	    {
-	    	"name": "Interamerican University",
-	    	"location": "San Juan, PR, US",
-	    	"degree": "BA",
-	    	"major": "Computer Science",
-	    	"dates": "2004-2009 -- BS"
+	"schools":[{
+		"name": "Interamerican University",
+		"location": "San Juan, PR, US",
+		"degree": "BA",
+		"major": "Computer Science",
+		"dates": "2004-2009 -- BS"
 	    },
 	    {
 	    	"name": "Nova Southeastern University",
@@ -69,58 +66,34 @@ var education = {
 	    	"degree": "MS",
 	    	"major": "Management Information Systems",
 	    	"dates": "2012-2015 -- MS"
-	    }
-]};
+		}],
+	"onlineCourses":[{
+		"title": "title",
+		"school": "school",
+		"date": "dates",
+		"url": "ur1"
+	}]
+};
 
 
-var formattedName = HTMLheaderName.replace("%data%", bio.name) ;
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedBioPic = HTMLbioPic.replace("%data%", bio.picture);
-var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcome);
-$("#header").append(formattedName);
-$("#header").append(formattedRole);
-$("#header").append(formattedBioPic);
-$("#header").append(formattedWelcome);
 
 /**
-* @description Display contacts on either top or footer sections depending on the arguments beign passed.
+* @description Display header, skills, and contacts on either top or footer sections depending on the arguments beign passed. 
 * @param {object} contacts - An object containing contact information.
 * @param {string} section - The section where to display contact information.
-*/
-bio.displayContacts = function(contacts, section){
-	// Initialize posible sections
-	var sectionId = ["#topContacts", "#footerContacts"];
-	var sections = ["top", "footer"];
-	// Check if section is valid
-	if(sections.indexOf(section) === -1){
-		return null;
-	}
-
-	// Assign section
-	if(section === "top"){
-		section = sectionId[0];
-	}
-	else{
-		section = sectionId[1];
-	}
-
-	var formattedMobile = HTMLmobile.replace("%data%", contacts.mobile);
-	var formattedEmail =  HTMLemail.replace("%data%", contacts.email);
-	var formattedGitHub = HTMLgithub.replace("%data%", contacts.github);
-	var formattedLocation = HTMLlocation.replace("%data%", contacts.location);
-
-	$(section).append(formattedMobile);
-	$(section).append(formattedEmail);
-	$(section).append(formattedGitHub.replace("%url%", contacts.github));
-	$(section).append(formattedLocation);
-
-}
-
-/**
-* @description Display set of skills added within the bio object.
 * @param {object} skills - An object containing professional skills.
 */
-bio.display = function(skills){
+bio.display = function(skills, contacts){
+
+	var formattedName = HTMLheaderName.replace("%data%", bio.name) ;
+	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+	var formattedBioPic = HTMLbioPic.replace("%data%", bio.picture);
+	var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcome);
+	$("#header").append(formattedName);
+	$("#header").append(formattedRole);
+	$("#header").append(formattedBioPic);
+	$("#header").append(formattedWelcome);
+
 	if(skills.length > 0){
 	$("#header").append(HTMLskillsStart);
 		for(var i = 0; i < bio.skills.length; i++){
@@ -128,14 +101,31 @@ bio.display = function(skills){
 			$("#skills").append(fortmattedSkills);
 		}
 	}
-}
+
+	// Initialize posible sections
+	var sectionId = ["#topContacts", "#footerContacts"];
+	var sections = ["top", "footer"];
+
+	var formattedMobile = HTMLmobile.replace("%data%", contacts.mobile);
+	var formattedEmail =  HTMLemail.replace("%data%", contacts.email);
+	var formattedGitHub = HTMLgithub.replace("%data%", contacts.github);
+	var formattedLocation = HTMLlocation.replace("%data%", contacts.location);
+
+	sectionId.forEach(function(val){
+		$(val).append(formattedMobile);
+		$(val).append(formattedEmail);
+		$(val).append(formattedGitHub.replace("%url%", contacts.github));
+		$(val).append(formattedLocation);
+	});
+
+};
 
 /**
 * @description Display work experience.
 */
 work.display = function(){
 	if(work.jobs.length > 0){
-		for(key in work.jobs){
+		for(var key = 0; key < work.jobs.length; key++){
 			$("#workExperience").append(HTMLworkStart);
 			var formattedemployer = HTMLworkEmployer.replace("%data%", work.jobs[key].employer);
 			var formattedWorkTitle = HTMLworkTitle.replace("%data%", work.jobs[key].title);
@@ -148,7 +138,7 @@ work.display = function(){
 			$(".work-entry:last").append(formattedDescription);
 		}
 	}
-}
+};
 
 /**
 * @description Display projects and images.
@@ -171,8 +161,7 @@ projects.display = function(){
 			});
 		}
 	}
-}
-
+};
 
 /**
 * @description Display set of skills added within the bio object.
@@ -194,8 +183,7 @@ education.display = function(){
 			$(".education-entry:last").append(formattedMajor);
 		}
 	}
-}
-
+};
 
 /**
 * @description Formats the full name into a international-friendly format.
@@ -216,10 +204,8 @@ function inName(fullName){
 // Invoke display functions.
 work.display();
 projects.display();
-bio.display(bio.skills);
+bio.display(bio.skills,bio.contacts);
 education.display();
-bio.displayContacts(bio.contacts, "top");
-bio.displayContacts(bio.contacts, "footer");
 
 // show map
 $("#mapDiv").append(googleMap);
